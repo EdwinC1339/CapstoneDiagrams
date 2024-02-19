@@ -1,0 +1,10 @@
+@startuml
+skin rose
+
+:Read Audio Data;
+:Spectrogram creation;
+:Convolutional transform;
+:Linear layer;
+#palegreen:Classification;
+
+@enduml

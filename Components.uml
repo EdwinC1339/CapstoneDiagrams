@@ -1,0 +1,31 @@
+@startuml
+skin rose
+folder "ClusterDuck Network" as CDN {
+    component Sensors
+    component Ducklinks
+    component PapaDuck
+}
+Sensors -> Ducklinks
+Ducklinks -> PapaDuck
+PapaDuck --> WWW
+folder DMS {
+    component "CDN Server" as serv
+    component DBMS
+    component "Audio Classifier" as ML
+}
+
+serv --> WWW
+
+serv --> DBMS
+
+DBMS -> ML : Audio data
+
+ML -> DBMS : Model prediction
+
+component Dashboard
+
+Dashboard <-> DBMS 
+
+PapaDuck <.r.> serv : Sensor data
+
+@enduml

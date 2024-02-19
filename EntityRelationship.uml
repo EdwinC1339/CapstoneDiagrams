@@ -1,0 +1,56 @@
+@startuml
+
+skin rose
+skinparam linetype ortho
+
+entity Node {
+    * Nid: number <<generated>>
+    --
+    * Ntype: enum [Primary, Secondary]
+    * Nlatitude: number
+    * Nlongitude: number
+    desciption: text
+}
+
+entity TimestampIndex {
+    * Tid: number <<generated>>
+    * Nid: number <<FK>>
+    --
+    * Ttime
+}
+
+entity ClassifierReport {
+    * CRid: number <<generated>>
+    * Tid: number <<FK>>
+    --
+    * CRsamples: number
+    * CRcoqui_common: number
+    * CRcoqui_eleutherodactylus: number
+    * CRno_hit: number
+}
+
+entity AudioFile {
+    * AFid: number <<generated>>
+    * Tid: number <<FK>>
+    --
+    * data [blob]
+}
+
+
+entity WeatherData {
+    * WDid: number <<generated>>
+    * Tid: number <<FK>>
+    --
+    * WDtemperature: number
+    * WDhumidity: number
+    * WDpressure: number
+    * WDdid_rain: boolean
+}
+
+Node ||--o{ TimestampIndex
+
+TimestampIndex ||--|| AudioFile
+TimestampIndex ||----o| ClassifierReport : ClassifierReport is added post-hoc by classifier model.
+TimestampIndex ||--|| WeatherData
+
+@enduml
