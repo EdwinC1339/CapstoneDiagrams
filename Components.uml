@@ -8,6 +8,7 @@ folder "ClusterDuck Network" as CDN {
 Sensors -> Ducklinks
 Ducklinks -> PapaDuck
 PapaDuck --> WWW
+component Dashboard
 folder DMS {
     component "CDN Server" as serv
     component DBMS
@@ -22,10 +23,10 @@ DBMS -> ML : Audio data
 
 ML -> DBMS : Model prediction
 
-component Dashboard
 
-Dashboard <-> DBMS 
 
-PapaDuck <.r.> serv : Sensor data
+DBMS <-l-> Dashboard 
+
+PapaDuck <.d.> serv : Sensor data
 
 @enduml
