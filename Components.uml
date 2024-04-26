@@ -1,5 +1,7 @@
 @startuml
 skin rose
+skinparam backgroundColor transparent
+
 folder "ClusterDuck Network" as CDN {
     component Sensors
     component Ducklinks
